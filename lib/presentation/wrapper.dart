@@ -1,6 +1,6 @@
-import 'package:firebase_auth_app/presentation/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth_app/presentation/phone_number_screen.dart';
+import 'package:firebase_auth_app/presentation/verification_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'home_screen.dart';
@@ -20,9 +20,13 @@ class _WrapperState extends State<Wrapper> {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-           return HomeScreen();
+            if (snapshot.data!.emailVerified) {
+              return HomeScreen();
+            } else {
+              return VerificationScreen();
+            }
           } else {
-            return SignInScreen();
+            return PhoneNumberScreen();
           }
         },
       ),
