@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth_app/presentation/phone_number_screen.dart';
-import 'package:firebase_auth_app/presentation/verification_screen.dart';
+import 'package:firebase_auth_app/presentation/screens/phone_number_screen.dart';
+import 'package:firebase_auth_app/presentation/screens/verification_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'home_screen.dart';
@@ -20,7 +20,7 @@ class _WrapperState extends State<Wrapper> {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            if (snapshot.data!.emailVerified) {
+            if (!snapshot.data!.emailVerified) {
               return HomeScreen();
             } else {
               return VerificationScreen();

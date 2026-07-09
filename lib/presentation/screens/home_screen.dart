@@ -21,7 +21,15 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Email : ${user!.email}"),
+            !user!.phoneNumber!.isNotEmpty
+                ? Text("Email : ${user!.email}")
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Phone Number : ${user!.phoneNumber}"),
+                      Text("UID : ${user!.uid}"),
+                    ],
+                  ),
             SizedBox(height: 25),
             Text("Email Varified : ${user!.emailVerified}"),
           ],

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth_app/presentation/forget_password_screen.dart';
-import 'package:firebase_auth_app/presentation/sign_up_screen.dart';
+import 'package:firebase_auth_app/presentation/screens/forget_password_screen.dart';
+import 'package:firebase_auth_app/presentation/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';

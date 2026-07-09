@@ -39,6 +39,7 @@ dependencies:
   get: ^4.7.3
   google_sign_in: ^6.3.0
   pinput: ^6.0.2
+  dio: ^5.10.0
 
 
 dev_dependencies:
