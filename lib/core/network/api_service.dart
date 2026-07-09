@@ -18,7 +18,6 @@ class ApiService {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          print("Request => ${options.method}");
           print("URl => ${options.uri}");
           print("Body => ${options.data}");
           handler.next(options);
@@ -38,11 +37,8 @@ class ApiService {
     );
   }
 
-  Future<Response> get(
-    String endpoint, {
-    Map<String, dynamic>? queryParams,
-  }) async {
-    return await dio.get(endpoint, queryParameters: queryParams);
+  Future<Response> get(String endpoint, {Map<String, dynamic>? headers}) async {
+    return await dio.get(endpoint, options: Options(headers: headers));
   }
 
   Future<Response> post(String endpoint, {dynamic data}) async {
