@@ -10,7 +10,7 @@ import '../controller/login_controller.dart';
 class LoginBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ApiService>(() => ApiService());
+    Get.lazyPut<ApiService>(() => ApiService(storage: Get.find()));
     Get.lazyPut<AuthRepository>(() => AuthRepository(apiService: Get.find()));
 
     Get.lazyPut<LoginController>(() => LoginController(repository: Get.find()));

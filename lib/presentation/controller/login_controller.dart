@@ -1,14 +1,17 @@
 import 'package:firebase_auth_app/app/routes/app_routes.dart';
-import 'package:firebase_auth_app/core/storage/secure_storage_service.dart';
+import 'package:firebase_auth_app/core/exceptions/api_exception.dart';
+import 'package:firebase_auth_app/core/service/secure_storage_service.dart';
 import 'package:firebase_auth_app/data/repositories/auth_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 import '../../core/constant/storage_keys.dart';
 
 class LoginController extends GetxController {
   final AuthRepository repository;
   final storage = SecureStorageService();
+  var logger = Logger();
 
   LoginController({required this.repository});
 
@@ -59,9 +62,9 @@ class LoginController extends GetxController {
         key: StorageKeys.accessToken,
         value: user.accessToken ?? "",
       );
-      print("GO to home");
       Get.offAllNamed(AppRoutes.homeWithData);
-      print("reach to home");
+    } on ApiException catch (e) {
+      Get.snackbar("Error", e.message);
     } catch (e) {
       Get.snackbar("Login Failed", e.toString());
     } finally {

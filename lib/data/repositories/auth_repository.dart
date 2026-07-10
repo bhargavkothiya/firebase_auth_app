@@ -21,7 +21,7 @@ class AuthRepository {
       );
       return UserModel.fromJson(response.data);
     } on DioException catch (e) {
-      throw ApiException(e.response!.data["message"] ?? "Something went wrong");
+      throw ApiException(e.response?.data["message"] ?? "Something went wrong");
     } catch (e) {
       throw Exception(e.toString());
     }

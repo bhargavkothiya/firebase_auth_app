@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth_app/core/constant/api_constant.dart';
 import 'package:firebase_auth_app/core/constant/storage_keys.dart';
 import 'package:firebase_auth_app/core/network/api_service.dart';
-import 'package:firebase_auth_app/core/storage/secure_storage_service.dart';
+import 'package:firebase_auth_app/core/service/secure_storage_service.dart';
 import 'package:firebase_auth_app/data/model/user_response_modal.dart';
 
 import '../../core/exceptions/api_exception.dart';
@@ -18,9 +18,8 @@ class HomeRepository {
       final token = await storage.read(key: StorageKeys.accessToken);
       final response = await apiService.get(
         ApiConstant.profileData,
-        headers: {"Authorization": "Bearer $token"},
+        //headers: {"Authorization": "Bearer $token"},
       );
-
       return UserResponseModel.fromJson(response.data);
     } on DioException catch (e) {
       throw ApiException(e.response!.data["message"] ?? "Something went wrong");
