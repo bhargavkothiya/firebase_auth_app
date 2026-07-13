@@ -43,7 +43,7 @@ class ApiService {
           handler.next(response);
         },
         onError: (error, handler) async {
-          if (error.response?.statusCode == 401) {
+          if (error.response!.statusCode == 401) {
             final token = await refreshToken();
             if (token != null) {
               final request = error.requestOptions;
@@ -64,6 +64,7 @@ class ApiService {
           }
 
           logger.d("ERROR => ${error.message}");
+          logger.d("Status Code => ${error.response!.statusCode}");
           handler.next(error);
         },
       ),
@@ -75,7 +76,7 @@ class ApiService {
       key: StorageKeys.refreshToken,
     );
     logger.d("STORED REFRESH TOKEN => $storedRefreshToken");
-    if (storedRefreshToken == null) return null;
+    //if (storedRefreshToken == null) return null;
 
     try {
       final refreshDio = Dio(BaseOptions(baseUrl: ApiConstant.baseUrl));

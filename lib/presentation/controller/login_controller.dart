@@ -62,6 +62,10 @@ class LoginController extends GetxController {
         key: StorageKeys.accessToken,
         value: user.accessToken ?? "",
       );
+      await storage.write(
+        key: StorageKeys.refreshToken,
+        value: user.refreshToken ?? "",
+      );
       Get.offAllNamed(AppRoutes.homeWithData);
     } on ApiException catch (e) {
       Get.snackbar("Error", e.message);

@@ -1,3 +1,4 @@
+import 'package:firebase_auth_app/presentation/screens/auth_check_screen.dart';
 import 'package:firebase_auth_app/presentation/screens/home_screen.dart';
 import 'package:firebase_auth_app/presentation/screens/home_scren_user_data.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ abstract class AppRoutes {
   static const login = '/login';
   static const firebaseHome = '/home';
   static const homeWithData = '/homeWithData';
+  static const authCheckScreen = '/authCheckScreen';
 
   static final List<GetPage> routes = [
     GetPage(
@@ -27,5 +29,6 @@ abstract class AppRoutes {
       page: () => const HomeScreenUserData(),
       binding: HomeBindings(),
     ),
+    GetPage(name: authCheckScreen, page: () => const AuthCheckScreen()),
   ];
 }
